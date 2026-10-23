@@ -7,13 +7,14 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 ## J0 — Socle
 
 - [ ] Projet Unity 6 (URP, Input System) à la racine du dépôt, arborescence et assembly definitions de CLAUDE.md.
-- [ ] Simulation : grille de 1 m (sol, rue, mur, porte, fenêtre) chargée depuis un plan texte. Un quartier de test de trois ou quatre maisons avec pièces, portes et fenêtres.
+- [ ] Simulation : grille de 1 m découpée en chunks de 32 × 32 cases. Types de case : sol, rue, mur, porte, fenêtre, muret. Chaque case a une hauteur d'obstacle.
+- [ ] Simulation : plan chargé depuis un fichier texte. Un quartier de test de trois ou quatre maisons avec pièces, portes et fenêtres.
 - [ ] Simulation : chemin A* en 8 directions, sans couper les coins. Un survivant suit son chemin sur un tick fixe.
 - [ ] Présentation : scène construite depuis la grille, avec des formes simples.
 - [ ] Présentation : caméra RTS (déplacement clavier et bord d'écran, zoom, rotation par quarts de tour).
-- [ ] Rendu pixelisé stable : pas de scintillement quand la caméra bouge.
+- [ ] Rendu pixelisé stable : pas de scintillement quand la caméra bouge. Interface en pleine résolution par-dessus.
 - [ ] Sélection du survivant au clic, déplacement au clic droit, chemin affiché.
-- [ ] Tests EditMode : chargement du plan, A* (contourne un mur, passe une porte, ne coupe pas un coin, signale l'absence de chemin).
+- [ ] Tests EditMode : chargement du plan, découpage en chunks, A* (contourne un mur, passe une porte, ne coupe pas un coin, signale l'absence de chemin).
 
 ## J1 — Vision et brouillard
 
@@ -50,7 +51,7 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Interface : silhouette du corps avec les blessures, indicateurs d'état.
 - [ ] Tests : tirage des blessures, saignement dans le temps, effets des soins, probabilités d'infection sur grand nombre de tirages.
 
-## J4 — Escouade RTS
+## J4 — Escouade RTS et prise en main
 
 - [ ] Plusieurs survivants : sélection par rectangle, groupes de contrôle, ordres en file avec Maj.
 - [ ] Allures (accroupi, marche, course) avec leur bruit et leur vitesse.
@@ -58,9 +59,36 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Pause active et ralenti.
 - [ ] Ordres contextuels : fouiller, ouvrir, barricader, briser une vitre, escalader, soigner un équipier, porter un blessé.
 - [ ] Panique qui dégrade la précision et peut faire refuser un ordre suicidaire.
+- [ ] Prise en main d'un survivant :
+  - déplacement au clavier, regard vers le curseur, cône de vision qui suit ;
+  - frappe vers le curseur ;
+  - bascule entre survivants et retour à la vue RTS.
 - [ ] Tests : file d'ordres, effets des allures, refus d'ordre.
 
-## J5 — Fouille et inventaire
+## J5 — Armes à feu et visée libre
+
+- [ ] Lancer de rayon de la simulation en 2,5D : grille, hauteurs d'obstacle, matériaux, zones de touche des corps (tête, torse, bras, jambes).
+- [ ] Le curseur désigne un point 3D avec ce même lancer de rayon. La balle part du canon vers ce point.
+- [ ] Dispersion qui dépend de :
+  - l'arme et son recul ;
+  - la compétence, la panique, la douleur, un bras blessé ;
+  - le mouvement, la posture et le temps de visée.
+- [ ] Réticule qui affiche la dispersion réelle. Ligne de tir rouge quand un obstacle la coupe.
+- [ ] Couverture par la hauteur : un muret protège un survivant accroupi.
+- [ ] Traversée du bois, du plâtre et des portes, avec perte de puissance. Arrêt sur la brique et le béton.
+- [ ] Tir à la tête mortel, tir au corps qui fait chanceler, tir dans les jambes qui fait tomber.
+- [ ] Tir ami : un équipier dans la ligne de tir est touché.
+- [ ] Prise en main : clic droit pour viser (ralentit, resserre, voit plus loin), clic gauche pour tirer.
+- [ ] Mode RTS : tir automatique selon les règles d'engagement, et ordre de tir sur un point précis.
+- [ ] Armes : calibres, chargeurs remplis balle par balle, balle chambrée, enrayements selon l'état, bruit propre à chaque arme, flamme visible la nuit.
+- [ ] Tests :
+  - trajectoire identique avec la même graine ;
+  - arrêt par un muret selon la hauteur ;
+  - traversée selon le matériau ;
+  - zone touchée selon le point visé ;
+  - dispersion moyenne qui correspond au cône affiché, sur un grand nombre de tirs.
+
+## J6 — Fouille et inventaire
 
 - [ ] Conteneurs avec temps de fouille et objets révélés un par un. Butin selon le type de lieu.
 - [ ] Inventaire en grille : poches, sac, gilet, poche sécurisée. Glisser-déposer et rotation.
@@ -68,32 +96,30 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Définitions d'objets en ScriptableObjects, converties en données de simulation.
 - [ ] Tests : placement en grille avec rotation, poids, tirage du butin.
 
-## J6 — Expédition complète et planque minimale
+## J7 — Expédition complète et planque minimale
 
+- [ ] Quartier complet d'environ 1 km² : générateur de quartier (rues, parcelles, modèles de bâtiments) et lieux remarquables placés à la main.
 - [ ] Préparation : quartier, heure, escouade, équipement.
-- [ ] Points d'entrée tirés au hasard, durée limitée, survivants portés disparus à la fin.
+- [ ] Points d'entrée tirés au hasard.
+- [ ] Durée de 60 à 90 minutes, réglable par quartier. Survivants portés disparus à la fin.
 - [ ] Sorties permanentes, aléatoires et conditionnelles (sans sac à dos, fusée bruyante).
 - [ ] Mort : survivant et équipement perdus sauf la poche sécurisée. Le corps reste sur la carte.
+- [ ] Sauvegarde unique : quitter une expédition en cours et la reprendre, sans retour en arrière possible.
 - [ ] Planque en menu : stock, survivants, soins et guérison avec le temps, recrutement.
 - [ ] Sauvegarde et chargement en JSON.
 - [ ] Première boucle complète : planque, expédition, retour.
-- [ ] Tests : conditions de sortie, pertes à la mort, sauvegarde et rechargement identiques.
-
-## J7 — Armes à feu
-
-- [ ] Calibres, chargeurs remplis balle par balle, balle chambrée, enrayements selon l'état.
-- [ ] Modèle de précision : distance, compétence, panique, douleur, bras, mouvement.
-- [ ] Tir à la tête mortel, tir au corps qui fait chanceler.
-- [ ] Bruit propre à chaque arme, flamme visible la nuit.
-- [ ] Tir ami et lignes de tir.
-- [ ] Tests : précision, enrayements, consommation de munitions.
+- [ ] Tests :
+  - conditions de sortie ;
+  - pertes à la mort ;
+  - sauvegarde puis rechargement identiques, y compris en pleine expédition ;
+  - quartier généré identique avec la même graine.
 
 ## J8 — Destruction et planque physique
 
 - [ ] Murs en segments d'un mètre avec PV et matériau ; gravats ; effondrement de ce qui n'est plus soutenu.
 - [ ] Planque comme lieu réel à fortifier : murs, portes, tours de guet.
 - [ ] Nuits de horde : champ de flux qui intègre la solidité des murs, la horde vise le point faible.
-- [ ] Zombies grimpeurs qui s'empilent contre les murs hauts.
+- [ ] Zombies grimpeurs qui s'empilent contre les murs hauts ; les tirs font tomber la pile.
 - [ ] Réparation des murs.
 - [ ] Tests : dégâts par matériau, effondrement, choix du point faible.
 
@@ -113,4 +139,9 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 
 ## Performances, à suivre dès J2
 
-Au-delà de quelques centaines de zombies : données en tableaux de structures, Jobs et Burst pour la simulation, rendu instancié. Passer à DOTS seulement si c'est mesuré nécessaire.
+Un quartier d'environ 1 km² peut contenir des milliers de zombies et un million de cases.
+
+- Ne simuler en détail que les chunks proches de l'escouade et des bruits importants ; ailleurs, simulation allégée.
+- Données en tableaux de structures, Jobs et Burst pour la simulation, rendu instancié.
+- Passer à DOTS seulement si c'est mesuré nécessaire.
+- Mesurer à chaque jalon à partir de J2 : temps par tick de simulation, images par seconde, mémoire.

@@ -36,7 +36,10 @@ Objectif de cette session : réaliser le jalon J0 « Socle » de la feuille de r
 2. Crée l'arborescence et les assembly definitions décrites dans CLAUDE.md, dont
    RtsZombie.Simulation sans référence à UnityEngine.
 3. Simulation :
-   - grille de 1 m (sol, rue, mur, porte, fenêtre) chargée depuis un plan texte lisible ;
+   - grille de 1 m découpée en chunks de 32 x 32 cases, prévue pour un futur quartier
+     d'environ 1 km² ; types de case sol, rue, mur, porte, fenêtre, muret, chacun avec
+     une hauteur d'obstacle (la visée libre en aura besoin) ;
+   - plan chargé depuis un fichier texte lisible ;
    - quartier de test : trois ou quatre maisons avec pièces, portes et fenêtres, et des rues ;
    - chemin A* en 8 directions sans couper les coins ;
    - un survivant qui suit son chemin à vitesse donnée, sur un tick fixe de 20 Hz.
@@ -49,8 +52,9 @@ Objectif de cette session : réaliser le jalon J0 « Socle » de la feuille de r
    - sélection du survivant au clic gauche, déplacement au clic droit, chemin affiché.
    Crée la scène Assets/_Project/Scenes/Sandbox.unity avec un script d'éditeur,
    pas à la main.
-5. Tests EditMode : chargement du plan ; A* qui contourne un mur, passe par une porte,
-   ne coupe pas un coin, et signale l'absence de chemin quand tout est fermé.
+5. Tests EditMode : chargement du plan et découpage en chunks ; A* qui contourne un mur,
+   passe par une porte, ne coupe pas un coin, et signale l'absence de chemin quand tout
+   est fermé.
 6. Lance les tests en ligne de commande comme indiqué dans CLAUDE.md, et corrige
    jusqu'à ce que tout compile et passe. Si tu ne trouves pas Unity.exe, demande-moi son chemin.
 7. Mets à jour docs/FEUILLE-DE-ROUTE.md (cases cochées, écarts) et fais un commit.

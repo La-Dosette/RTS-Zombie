@@ -124,17 +124,39 @@ Les vêtements et protections couvrent des zones précises : blouson de moto, ga
 - **Compétences** qui progressent à l'usage : visée, rechargement, armes blanches courtes et longues, armes contondantes, discrétion, pas légers, agilité, premiers secours, menuiserie, mécanique, électricité, cuisine.
 - **Encombrement** : au-delà de la charge supportable, on est plus lent, plus bruyant et on s'épuise.
 
-## 5. Combat réaliste
+## 5. Combat réaliste et visée libre
+
+### Visée libre
+
+La balle part vraiment là où tu vises. Aucun jet de dés ne décide si un tir touche : chaque tir est une trajectoire simulée.
+
+- **Le point visé** : le curseur désigne un point précis du monde en 3D, par exemple la tête d'un zombie, sa jambe, une fenêtre, la serrure d'une porte ou une voiture. La balle part du canon vers ce point.
+- **La dispersion** : la balle s'écarte du point visé dans un cône dont la largeur dépend de :
+  - l'arme, son état et le recul accumulé en tir rapide ;
+  - la compétence de visée ;
+  - la panique, la douleur, la fatigue, un bras blessé ;
+  - le mouvement (arrêt, marche, course) et la posture (debout, accroupi) ;
+  - le temps passé à viser : plus on tient la visée, plus le cône se resserre.
+
+  Le réticule affiche ce cône en temps réel : ce que tu vois, c'est ce que tu risques.
+- **Ce que la balle touche** : le premier obstacle sur sa trajectoire.
+  - Chaque corps a des zones de touche (tête, torse, bras, jambes), donc viser la tête compte vraiment.
+  - Un équipier dans la ligne de tir prend la balle.
+- **Couverture par la hauteur** : un muret, une voiture ou un comptoir arrêtent les balles tirées en dessous de leur hauteur. S'accroupir derrière protège. La ligne de tir s'affiche et devient rouge si un obstacle la coupe.
+- **Traversée** : les balles traversent le bois, le plâtre et les portes, pas la brique ni le béton. Elles perdent de la puissance à chaque traversée.
+- **Effets sur les zombies** : un tir à la tête tue, un tir au corps fait chanceler, un tir dans les jambes peut le faire tomber et en faire un rampant.
+- **Les trois façons de tirer** utilisent la même balistique :
+  - en mode RTS, les survivants tirent seuls selon les règles d'engagement. Ils visent le corps ou la tête selon leur compétence, et peuvent rater ;
+  - toujours en mode RTS, on peut ordonner un tir sur un point précis : la voiture dont on veut déclencher l'alarme, une porte, un zombie particulier ;
+  - en prise en main (section 10), c'est toi qui vises à la souris.
+
+### Armes et adversaires
 
 - **Armes à feu** :
   - calibres et chargeurs à remplir balle par balle, balle chambrée ;
   - enrayements selon l'état de l'arme, recul, usure ;
   - bruit propre à chaque arme, flamme visible la nuit.
-- **Contre les zombies** : un tir à la tête tue, un tir au corps fait seulement chanceler. La précision dépend de :
-  - la distance, la compétence et la panique ;
-  - la douleur et l'état des bras ;
-  - le mouvement : tirer en marchant ou à l'arrêt.
-- **Contre les humains** : classes d'armure, pénétration des munitions, balles qui traversent le bois mais pas le béton.
+- **Contre les humains** : classes d'armure et pénétration des munitions.
 - **Corps à corps** : il coûte beaucoup d'endurance et use les armes. On peut repousser ou faire tomber un zombie, puis l'achever au sol.
 - **Être encerclé** : à trois zombies au contact, le survivant risque d'être agrippé, mis à terre et mordu. Être encerclé est presque toujours mortel.
 - **Tir ami** possible : il faut gérer les lignes de tir.
@@ -177,7 +199,9 @@ Les vêtements et protections couvrent des zones précises : blouson de moto, ga
   - permanentes ;
   - ouvertes seulement certaines expéditions ;
   - conditionnelles : payer un passeur, passer sans sac à dos par les égouts, relancer un générateur (bruyant), tirer une fusée pour un hélicoptère (très bruyant), repartir en véhicule s'il a du carburant.
-- **Durée limitée** : à la fin, les survivants restés sur place sont portés disparus.
+- **Durée** : de 60 à 90 minutes réelles selon le quartier, à régler en jouant. À la fin, les survivants restés sur place sont portés disparus.
+- **Taille** : un quartier fait environ 1 km², à régler aussi. C'est assez pour remplir une heure à une heure et demie de jeu prudent : plusieurs dizaines de bâtiments à fouiller et plusieurs itinéraires possibles.
+- **Sauvegarde unique** : on peut quitter une expédition en cours et la reprendre plus tard, mais pas revenir en arrière. Une mort est définitive.
 - **Fouille** : chaque conteneur prend du temps à fouiller et les objets apparaissent un par un. Le butin dépend du lieu.
 - **Poche sécurisée** : quelques cases qui restent même en cas de mort.
 - **Après une mort** :
@@ -211,7 +235,12 @@ Un vrai lieu de la ville, à fortifier, et non un simple menu.
   - poser un piège ou un appât sonore ;
   - entrer dans une pièce en se plaçant de part et d'autre de la porte.
 - **Pause active** et ralenti pour donner des ordres à tout moment.
-- **Contrôle direct** optionnel d'un survivant, comme dans Ebbtide.
+- **Prise en main d'un survivant**, avec une touche ou un double-clic :
+  - déplacement au clavier ;
+  - le survivant regarde vers le curseur, et son cône de vision suit la visée, comme dans Project Zomboid ;
+  - clic droit maintenu pour viser : il ralentit, la dispersion se resserre et la vue porte plus loin devant ;
+  - clic gauche pour tirer ou frapper vers le curseur ;
+  - le reste de l'escouade continue en mode RTS. On peut changer de survivant ou revenir à la vue RTS à tout moment.
 - **Interface** :
   - portraits de l'escouade, silhouette des blessures, indicateurs d'état (faim, panique, douleur) ;
   - inventaire en grille avec glisser-déposer et rotation ;
@@ -227,6 +256,7 @@ Un vrai lieu de la ville, à fortifier, et non un simple menu.
   - inconnu : noir ;
   - transitions en tramage.
 - Toits et murs qui s'effacent pour montrer les intérieurs.
+- Interface et réticule en pleine résolution, au-dessus de la scène pixelisée, pour que la visée reste précise au pixel près.
 - Destruction : segment remplacé par sa version cassée, gravats, débris et poussière.
 
 ## Ce qui viendra plus tard

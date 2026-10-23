@@ -12,7 +12,16 @@ RTS de survie et d'extraction réaliste dans une ville infestée de zombies. On 
 - Unity 6 LTS (6000.x), Universal Render Pipeline, Input System, C#.
 - Projet Unity à la racine du dépôt : `Assets/`, `Packages/`, `ProjectSettings/`.
 - Rendu 3D en basse résolution, agrandi sans lissage. Commencer simple : la caméra rend dans une RenderTexture en filtre Point, affichée en plein écran. Caler la caméra sur la grille de pixels pour éviter le scintillement. Passer à un Renderer Feature (Render Graph) seulement si c'est nécessaire.
-- Grille de 1 m. Un seul niveau pour l'instant ; les étages viendront plus tard.
+- Grille de 1 m. Un seul niveau pour l'instant ; les étages viendront plus tard. Les cases ont une hauteur d'obstacle : un muret ou une voiture couvre à mi-hauteur, un mur entièrement.
+- **Grande carte** : environ 1 km² par quartier (≈ 1 000 × 1 000 cases), pour des expéditions de 60 à 90 minutes.
+  - Grille découpée en chunks de 32 × 32 cases dès J0.
+  - Vision, bruit, chemins et IA ne travaillent que sur les chunks utiles.
+  - Les zombies éloignés sont simulés en version allégée.
+- **Visée libre** : la balistique est calculée dans la simulation, en 2,5D (position au sol plus hauteur).
+  - Un lancer de rayon maison traverse la grille (hauteurs d'obstacle, matériaux) et les zones de touche des corps.
+  - Le curseur et la balle utilisent ce même lancer de rayon : ce que le curseur désigne est ce que la balle visera.
+  - La physique Unity ne sert qu'aux effets visuels, comme les débris, jamais à une règle de jeu.
+- Interface et réticule en pleine résolution, au-dessus de la scène pixelisée.
 
 ## Architecture
 
