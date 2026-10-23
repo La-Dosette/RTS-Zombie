@@ -4,7 +4,7 @@ Recherche du 23 octobre 2026. Sources : pages publiques, critiques, guides de jo
 
 ## Direction visée
 
-Un RTS de défense contre les zombies dans une **ville moderne vue de dessus** : murs à tenir, soldats et blindés, bâtiments destructibles, rendu **3D pixelisé**.
+Un RTS de défense contre les zombies dans une **ville moderne** : murs à tenir, soldats et blindés, bâtiments destructibles, rendu **3D pixelisé**. La direction a ensuite évolué vers un RTS de survie et d'extraction en PvPvE, avec la caméra de Project Zomboid. La référence à jour est [CONCEPT.md](CONCEPT.md).
 
 Point de départ : un post Instagram de **mantakustudio** du 23 octobre 2026, « Walls must be hold » (#isometricgame #rts #indiedev). On y voit des pâtés de maisons, une ligne de murs avec quatre blindés derrière, des soldats et des zombies dans les rues. Les commentaires demandent plusieurs types de zombies (les véhicules les écrasent trop facilement) et une logistique intéressante. Le nom du jeu n'a pas été trouvé : Instagram n'est pas indexé par les moteurs de recherche.
 
