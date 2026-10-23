@@ -16,7 +16,9 @@ RTS de survie et d'extraction réaliste, en PvPvE, dans une ville américaine in
   - zoom par paliers entiers, pour garder des pixels nets ;
   - suit l'escouade ou le survivant pris en main ;
   - murs et toits s'effacent autour des survivants.
-- **Rendu** 3D en basse résolution, agrandi sans lissage.
+- **Rendu** 3D en basse résolution, agrandi sans lissage, mais **réaliste** (voir la section 11 du concept).
+  - La pixellisation vient seulement de la résolution, avec un facteur réglable. Pas de contours, pas d'éclairage en paliers, pas de palette réduite.
+  - Matériaux PBR réalistes, ombres douces, occlusion ambiante, couleurs naturelles.
   - Commencer simple : la caméra rend dans une RenderTexture en filtre Point, affichée en plein écran.
   - Caler la caméra sur la grille de pixels pour éviter le scintillement.
   - Passer à un Renderer Feature (Render Graph) seulement si c'est nécessaire.

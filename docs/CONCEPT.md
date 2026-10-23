@@ -273,7 +273,14 @@ Un vrai lieu à fortifier, et non un simple menu. Chaque joueur a la sienne, et 
   - zoom par paliers ;
   - elle suit l'escouade ou le survivant pris en main ;
   - murs et toits s'effacent autour des survivants pour montrer les intérieurs.
-- **Rendu 3D pixelisé** : scène 3D rendue en basse résolution puis agrandie sans lissage. La caméra se cale sur la grille de pixels pour éviter le scintillement. Contours, éclairage en paliers et palette limitée pour l'aspect pixel art.
+- **Rendu 3D pixelisé, mais réaliste** :
+  - référence visuelle fournie : [cette vidéo](https://youtu.be/SMgDRxw046Y), en visant un résultat **plus réaliste** encore ;
+  - la scène 3D est rendue en basse résolution puis agrandie sans lissage, avec la caméra calée sur la grille de pixels pour éviter le scintillement. Le degré de pixellisation est réglable ;
+  - la pixellisation vient seulement de la résolution : pas de contours, pas d'éclairage en paliers, pas de palette réduite ;
+  - matériaux et textures réalistes : béton, asphalte, herbe, brique, tôle, bois ;
+  - éclairage réaliste avec ombres douces et occlusion ambiante, couleurs ternes et naturelles ;
+  - la nuit, la lumière compte : lampes torches, phares, incendies, lampadaires encore alimentés ;
+  - traces qui restent : sang au sol et sur les vêtements, impacts de balles, douilles, débris, corps.
 - **Brouillard** rendu dans les shaders, à partir d'une texture de visibilité :
   - visible : en couleur ;
   - mémorisé : désaturé et sombre ;
