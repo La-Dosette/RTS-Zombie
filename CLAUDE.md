@@ -48,6 +48,10 @@ Assets/_Project/
   - pas d'allocation par image dans les boucles chaudes ;
   - rendu instancié quand il y a des centaines d'entités ;
   - Jobs et Burst, puis DOTS, seulement si une mesure le justifie.
+- **Sauvegarde** :
+  - un seul emplacement, écrit de façon atomique : fichier temporaire, puis remplacement ;
+  - en expédition, enregistrement continu toutes les quelques secondes, et immédiat après chaque événement grave (morsure, mort, extraction). Il sert uniquement à reprendre après une interruption involontaire ;
+  - jamais de chargement d'un état antérieur. Quitter volontairement une expédition, c'est l'abandonner : les survivants sont portés disparus.
 - **Temps** :
   - en expédition, le temps de jeu avance à la vitesse réelle, hors pause et ralenti ;
   - à la planque, il avance par blocs : repos, soins, nuit.

@@ -201,7 +201,10 @@ La balle part vraiment là où tu vises. Aucun jet de dés ne décide si un tir 
   - conditionnelles : payer un passeur, passer sans sac à dos par les égouts, relancer un générateur (bruyant), tirer une fusée pour un hélicoptère (très bruyant), repartir en véhicule s'il a du carburant.
 - **Durée** : de 60 à 90 minutes réelles selon le quartier, à régler en jouant. À la fin, les survivants restés sur place sont portés disparus.
 - **Taille** : un quartier fait environ 1 km², à régler aussi. C'est assez pour remplir une heure à une heure et demie de jeu prudent : plusieurs dizaines de bâtiments à fouiller et plusieurs itinéraires possibles.
-- **Sauvegarde unique** : on peut quitter une expédition en cours et la reprendre plus tard, mais pas revenir en arrière. Une mort est définitive.
+- **Pas de sortie volontaire** : on ne peut pas quitter une expédition pour la reprendre plus tard. L'abandonner depuis le menu revient à laisser l'escouade sur place : les survivants sont portés disparus avec leur équipement, comme dans Tarkov. Une mort est définitive.
+- **Interruption involontaire sans pénalité** : en cas de plantage, de coupure de courant ou de perte de connexion, l'expédition reprend au lancement suivant, en pause, exactement où elle en était.
+  - La partie s'enregistre en continu, toutes les quelques secondes, et immédiatement après chaque événement grave : morsure, mort, extraction.
+  - L'enregistrement ne fait qu'avancer. Fermer le jeu de force n'annule ni une morsure ni une situation désespérée : on reprend dans la même.
 - **Fouille** : chaque conteneur prend du temps à fouiller et les objets apparaissent un par un. Le butin dépend du lieu.
 - **Poche sécurisée** : quelques cases qui restent même en cas de mort.
 - **Après une mort** :

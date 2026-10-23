@@ -104,14 +104,18 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Durée de 60 à 90 minutes, réglable par quartier. Survivants portés disparus à la fin.
 - [ ] Sorties permanentes, aléatoires et conditionnelles (sans sac à dos, fusée bruyante).
 - [ ] Mort : survivant et équipement perdus sauf la poche sécurisée. Le corps reste sur la carte.
-- [ ] Sauvegarde unique : quitter une expédition en cours et la reprendre, sans retour en arrière possible.
+- [ ] Pas de sortie volontaire : abandonner l'expédition rend les survivants portés disparus, avec leur équipement.
+- [ ] Reprise après une interruption involontaire (plantage, coupure) : l'expédition reprend en pause, exactement où elle en était.
+- [ ] Enregistrement continu, et immédiat après une morsure, une mort ou une extraction. Aucun retour en arrière possible.
 - [ ] Planque en menu : stock, survivants, soins et guérison avec le temps, recrutement.
 - [ ] Sauvegarde et chargement en JSON.
 - [ ] Première boucle complète : planque, expédition, retour.
 - [ ] Tests :
   - conditions de sortie ;
   - pertes à la mort ;
-  - sauvegarde puis rechargement identiques, y compris en pleine expédition ;
+  - reprise après interruption identique au dernier état enregistré, en pleine expédition ;
+  - abandon qui entraîne la perte des survivants et de leur équipement ;
+  - aucun moyen de recharger un état antérieur, même en fermant le jeu de force juste après une morsure ;
   - quartier généré identique avec la même graine.
 
 ## J8 — Destruction et planque physique
