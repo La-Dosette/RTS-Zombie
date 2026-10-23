@@ -33,7 +33,7 @@ RTS de survie et d'extraction réaliste, en PvPvE, dans une ville américaine in
   - La physique Unity ne sert qu'aux effets visuels, comme les débris, jamais à une règle de jeu.
 - Interface et réticule en pleine résolution, au-dessus de la scène pixelisée.
 - **PvPvE avec serveur qui fait autorité** :
-  - 4 à 6 escouades de joueurs par expédition, plus des pillards IA et des milliers de zombies ;
+  - 8 à 12 escouades de joueurs par expédition (jusqu'à 60 survivants), plus des pillards IA et environ 500 zombies, à régler ;
   - pas de pause en expédition ;
   - la planque de chaque joueur est une instance PvE.
 

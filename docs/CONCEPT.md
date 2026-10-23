@@ -167,6 +167,7 @@ La balle part vraiment là où tu vises. Aucun jet de dés ne décide si un tir 
 
 ## 6. Zombies
 
+- **Nombre** : quelques centaines par quartier, environ 500, à régler. C'est moins que dans un jeu de hordes, mais assez pour qu'on ne puisse pas les ignorer : ils occupent les rues, se regroupent au moindre bruit, et une fusillade peut en attirer des dizaines.
 - **Types** :
   - marcheur (le plus courant) et coureur (rare) ;
   - rampant, aux jambes brisées, caché sous les voitures ;
@@ -204,7 +205,7 @@ La balle part vraiment là où tu vises. Aucun jet de dés ne décide si un tir 
 - **Préparation** : choisir le quartier, l'heure (la nuit est plus discrète mais plus dangereuse), l'escouade (1 à 5 survivants) et son équipement. Tout ce qui part peut être perdu.
 - **Arrivée** : chaque escouade arrive à un point d'entrée différent, tiré au hasard.
 - **Les autres joueurs** :
-  - plusieurs escouades partagent le quartier, de 4 à 6, à régler ;
+  - de 8 à 12 escouades partagent le quartier, à régler. Les autres joueurs sont la menace principale ;
   - on ne sait pas où elles sont, sauf si on les voit ou les entend ;
   - les sorties sont communes, et certaines se disputent ;
   - abattre une escouade permet de prendre tout son équipement ;

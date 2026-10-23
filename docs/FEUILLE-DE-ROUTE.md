@@ -49,7 +49,7 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Corps à corps simple : coup, repousser, achever au sol, coût en endurance.
 - [ ] Encerclement : à trois zombies au contact, risque d'être agrippé et mis à terre.
 - [ ] Marqueurs fantômes des zombies sortis du champ de vision.
-- [ ] 200 zombies sans chute de fluidité.
+- [ ] 500 zombies sans chute de fluidité.
 - [ ] Tests : propagation et étouffement du bruit, transitions d'états, choix de cible.
 
 ## J3 — Blessures
@@ -114,6 +114,7 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 - [ ] Compensation de latence pour les tirs, dans une limite de temps.
 - [ ] Déconnexion : l'escouade reste et passe en défense automatique ; reconnexion à tout moment pendant l'expédition.
 - [ ] Simulation de latence et de pertes de paquets pour tester.
+- [ ] Test de charge : 12 clients simulés de 5 survivants chacun dans la même expédition.
 - [ ] Tests :
   - aucune entité hors perception dans les paquets d'un joueur ;
   - un ordre invalide ou falsifié par un client est refusé ;
@@ -134,7 +135,7 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 
 - [ ] Quartier complet d'environ 1 km² : générateur de quartier (rues, parcelles, modèles de bâtiments) et lieux remarquables placés à la main.
 - [ ] Préparation : quartier, heure, escouade, équipement.
-- [ ] Mise en relation simple : 4 à 6 escouades par expédition, points d'entrée différents et tirés au hasard.
+- [ ] Mise en relation simple : 8 à 12 escouades par expédition, points d'entrée différents et tirés au hasard.
 - [ ] Durée de 60 à 90 minutes, réglable par quartier. Survivants portés disparus à la fin.
 - [ ] Sorties permanentes, aléatoires et conditionnelles (sans sac à dos, fusée entendue par tout le quartier).
 - [ ] Mort : survivant et équipement perdus sauf la poche sécurisée. Le corps reste et peut être fouillé par tous.
@@ -174,7 +175,7 @@ Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dan
 
 ## Performances, à suivre dès J2
 
-Une expédition, c'est environ 1 km², un million de cases, jusqu'à 30 survivants de joueurs, des pillards et des milliers de zombies.
+Une expédition, c'est environ 1 km², un million de cases, jusqu'à 60 survivants de joueurs (12 escouades de 5), des pillards et environ 500 zombies. Avec autant de joueurs, la vision et la perception de chaque escouade coûtent plus cher que les zombies.
 
 - Ne simuler en détail que les chunks proches des escouades et des bruits importants ; ailleurs, simulation allégée.
 - Données en tableaux de structures, rendu instancié, Jobs et Burst côté client.
