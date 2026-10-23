@@ -99,7 +99,7 @@ Le dépôt GitHub contient une version antérieure à la démo actuelle : script
 
 ## Choix retenu : 3D pixelisée sous Unity 6
 
-Ebbtide, comme le post de mantakustudio, ne dessine pas ses sprites à la main : la scène est en 3D, rendue en basse résolution puis agrandie sans lissage. Cette approche facilite les bâtiments destructibles, puisque des morceaux de modèles 3D tombent au lieu d'un sprite à redessiner pour chaque état de dégât. Elle facilite aussi la caméra de dessus. C'est le rendu retenu, sous Unity 6 comme Ebbtide. Voir [CLAUDE.md](../CLAUDE.md).
+Ebbtide, comme le post de mantakustudio, ne dessine pas ses sprites à la main : la scène est en 3D, rendue en basse résolution puis agrandie sans lissage. Cette approche facilite les bâtiments destructibles, puisque des morceaux de modèles 3D tombent au lieu d'un sprite à redessiner pour chaque état de dégât. Elle facilite aussi la caméra de dessus. C'est le rendu retenu, sous Unity 6 comme Ebbtide. Voir [AGENTS.md](../AGENTS.md).
 
 ## Outils
 

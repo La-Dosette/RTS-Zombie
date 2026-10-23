@@ -2,11 +2,75 @@
 
 Chaque jalon doit être jouable et testé avant de commencer le suivant. Cocher une case seulement quand le critère est vérifié dans l'éditeur et que les tests passent. Noter sous le jalon les écarts et les décisions prises en cours de route.
 
-Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dans [CLAUDE.md](../CLAUDE.md).
+Le concept complet est dans [CONCEPT.md](CONCEPT.md), les règles de travail dans [AGENTS.md](../AGENTS.md).
+
+## V1 — Premier prototype jouable
+
+Une petite carte, une dizaine de zombies et un seul personnage dirigé directement par le joueur. Le but est de valider les sensations : vision, bruit, visée libre, peur de la morsure.
+
+La V1 suit déjà l'architecture d'AGENTS.md : simulation en C# pur, ordres et instantanés, projets `dotnet/`. Son code sert de base au reste du jeu.
+
+Elle se fait en trois étapes, une session chacune.
+
+### Étape A — Carte, personnage, caméra, rendu
+
+- [ ] Projet Unity 6 (URP, Input System), arborescence et assembly definitions d'AGENTS.md, projets `dotnet/` avec `dotnet test`.
+- [ ] Grille de 1 m en chunks de 32 × 32. Types de case : sol, rue, herbe, mur, porte, fenêtre, muret, voiture. Chaque case a une hauteur d'obstacle et un matériau.
+- [ ] Petite carte chargée depuis un plan texte, environ 64 × 64 m :
+  - un carrefour ;
+  - trois maisons avec pièces, portes et fenêtres ;
+  - un muret et deux voitures ;
+  - une zone de sortie.
+- [ ] Tick fixe de 20 Hz, ordres sérialisables et instantanés via un serveur intégré.
+- [ ] Personnage :
+  - déplacement au clavier, sur les touches physiques (ZQSD sur un clavier AZERTY, WASD sur un clavier QWERTY) ;
+  - regard vers la souris ;
+  - allures marche, course (Maj) et accroupi (Ctrl) ;
+  - collisions avec la grille, portes à ouvrir et fermer (E).
+- [ ] Scène construite depuis la grille, avec des matériaux réalistes simples (asphalte, herbe, brique, bois, béton) et une lumière avec ombres douces.
+- [ ] Caméra comme Project Zomboid : orthographique, isométrique fixe, zoom par paliers, elle suit le personnage.
+- [ ] Rendu pixelisé avec facteur réglable, sans scintillement. Interface en pleine résolution.
+- [ ] Tests : chargement du plan, chunks, collisions, portes, ordre sérialisé puis relu à l'identique.
+
+### Étape B — Vision, bruit, zombies
+
+- [ ] Cône de vision d'environ 150° qui suit la souris, et perception proche à 360°.
+- [ ] Murs et portes fermées bloquent la vue, les fenêtres la laissent passer.
+- [ ] Brouillard à trois états (inconnu, mémorisé, visible), rendu dans les shaders.
+- [ ] Toits qui masquent les intérieurs, murs qui s'abaissent devant le personnage.
+- [ ] Bruit : pas, course, portes. Affiché en cercles, étouffé par les murs.
+- [ ] 10 à 15 zombies :
+  - errance, recherche de l'origine d'un bruit, poursuite, attaque, mémoire de la dernière position ;
+  - ils défoncent les portes, lentement.
+- [ ] Marqueurs fantômes des zombies sortis du champ de vision.
+- [ ] Corps à corps avec une batte (clic gauche) : coup, repousser, coût en endurance.
+- [ ] Tests : ligne de vue, cône, mémoire du brouillard, propagation du bruit, états des zombies.
+
+### Étape C — Visée libre, blessures, fouille, sortie
+
+- [ ] Pistolet en visée libre :
+  - clic droit pour viser, clic gauche pour tirer vers le point 3D sous le curseur ;
+  - dispersion affichée par le réticule, ligne de tir rouge si un obstacle la coupe ;
+  - un muret couvre un personnage accroupi, les balles traversent le bois et les portes ;
+  - tête : mort, corps : chancelle, jambes : tombe ;
+  - deux chargeurs seulement, bruit de 40 m qui attire les zombies.
+- [ ] Blessures simplifiées :
+  - zone du corps touchée ;
+  - égratignure, lacération ou morsure, avec saignement et volume sanguin ;
+  - pansement sur une touche ;
+  - infection cachée pendant la partie, révélée sur l'écran de fin.
+- [ ] Quatre conteneurs à fouiller, avec un temps de fouille. Ils contiennent pansements, munitions et objets de valeur, dans un inventaire en simple liste.
+- [ ] Sortie : rester 10 secondes dans la zone de sortie. Durée de la partie : 15 minutes.
+- [ ] Écran de fin : extrait ou mort, butin ramené, infecté ou non.
+- [ ] Tests : trajectoire identique avec la même graine, couverture par le muret, traversée du bois, zone touchée, saignement, probabilités d'infection, conditions de sortie.
+
+### Hors de la V1
+
+Escouade et contrôles RTS, réseau et autres joueurs, inventaire en grille, planque, destruction, jour et nuit, météo. Après la V1, reprendre à J0 : cocher ce que la V1 couvre déjà et compléter le reste.
 
 ## J0 — Socle
 
-- [ ] Projet Unity 6 (URP, Input System) à la racine du dépôt, arborescence et assembly definitions de CLAUDE.md.
+- [ ] Projet Unity 6 (URP, Input System) à la racine du dépôt, arborescence et assembly definitions de AGENTS.md.
 - [ ] Projets `dotnet/` : la simulation compile hors Unity (netstandard2.1, C# 9), et ses tests passent avec `dotnet test`.
 - [ ] Simulation : grille de 1 m découpée en chunks de 32 × 32 cases. Types de case : sol, rue, mur, porte, fenêtre, muret. Chaque case a une hauteur d'obstacle.
 - [ ] Simulation : plan chargé depuis un fichier texte. Un quartier de test de trois ou quatre maisons avec pièces, portes et fenêtres.
