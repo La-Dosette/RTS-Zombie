@@ -97,9 +97,9 @@ Le dépôt GitHub contient une version antérieure à la démo actuelle : script
 | Choix du point d'attaque | Withstand (limite) | Intégrer les murs au champ de flux avec un coût lié à leurs PV : la horde vise le point faible au lieu de foncer droit |
 | Milliers de zombies | Withstand (article GPU) | Données des zombies dans des tableaux compacts ou sur le GPU, pas un objet physique par zombie |
 
-## Choix technique à trancher : le rendu « 3D pixelisé »
+## Choix retenu : 3D pixelisée sous Unity 6
 
-Ebbtide, comme le post de mantakustudio, ne dessine pas ses sprites à la main : la scène est en 3D, rendue en basse résolution puis agrandie sans lissage. Pour notre jeu, cette approche facilite les bâtiments destructibles (morceaux de modèles 3D qui tombent, plutôt qu'un sprite à redessiner pour chaque état de dégât) et la caméra de dessus. À l'inverse, les sprites 2D dessinés donnent plus de contrôle artistique, mais chaque état de destruction devient un dessin. C'est le premier choix à faire avant de prototyper.
+Ebbtide, comme le post de mantakustudio, ne dessine pas ses sprites à la main : la scène est en 3D, rendue en basse résolution puis agrandie sans lissage. Cette approche facilite les bâtiments destructibles, puisque des morceaux de modèles 3D tombent au lieu d'un sprite à redessiner pour chaque état de dégât. Elle facilite aussi la caméra de dessus. C'est le rendu retenu, sous Unity 6 comme Ebbtide. Voir [CLAUDE.md](../CLAUDE.md).
 
 ## Outils
 

@@ -1,22 +1,23 @@
-# Concept : RTS de survie et d'extraction
+# Concept : RTS de survie et d'extraction réaliste
 
-Nom provisoire : RTS-Zombie.
+Nom provisoire : RTS-Zombie. Unity 6, rendu 3D pixelisé, vue de dessus.
 
 ## En une phrase
 
-Tu diriges un groupe de survivants depuis une planque, dans une ville infestée. Tu envoies une escouade en expédition dans un quartier : elle fouille et ramasse ce qu'elle peut, puis doit rejoindre une sortie avant d'être submergée. Un survivant qui meurt est perdu pour toujours, avec tout ce qu'il portait.
+Tu diriges un groupe de survivants depuis une planque, dans une ville infestée. Tu envoies une escouade en expédition dans un quartier : elle fouille et ramasse ce qu'elle peut, puis doit rejoindre une sortie avant d'être submergée. Chaque blessure compte, chaque bruit se paie. Un survivant qui meurt est perdu pour toujours, avec tout ce qu'il portait.
 
-- **RTS** : on commande une escouade, on ne joue pas un seul personnage.
-- **Project Zomboid** : le bruit attire les zombies, une morsure ne pardonne pas, les maisons se fouillent pièce par pièce et le monde se dégrade.
-- **Escape from Tarkov** : on ne garde que ce qu'on ramène, les sorties ont des conditions, le temps est limité, l'inventaire est en grille et la planque s'améliore entre deux expéditions.
+- **RTS** : on commande une escouade, avec pause active, pas un seul personnage.
+- **Project Zomboid** : vision limitée et brouillard, bruit, blessures détaillées, infection, fouille, monde persistant qui se dégrade.
+- **Escape from Tarkov** : on ne garde que ce qu'on ramène, sorties conditionnelles, temps limité, inventaire en grille, planque à améliorer.
+- **Ebbtide**, **They Are Billions** : ville moderne vue de dessus, murs à tenir, hordes, destructions persistantes.
 
 ## Piliers
 
-1. **Chaque survivant compte.** Il a un nom, des compétences, des blessures et son équipement. Sa mort est définitive.
-2. **Le bruit est l'ennemi.** Un coup de feu sauve une vie et attire la moitié du quartier.
-3. **Rentrer, c'est gagner.** Le butin ne vaut rien tant qu'il n'est pas extrait.
-4. **Les murs tiennent, jusqu'à ce qu'ils cèdent.** Murs et bâtiments sont destructibles, par les zombies comme par le joueur.
-5. **Le monde se souvient.** Les maisons fouillées restent vides, les murs abattus restent à terre, les morts restent dans la rue.
+1. **Réalisme avant confort.** Le joueur ne sait que ce que ses survivants voient et entendent. Une morsure ne se soigne pas. Une jambe cassée ralentit toute l'escouade.
+2. **Chaque survivant compte.** Il a un nom, un passé, des traits, des compétences, des blessures et son équipement. Sa mort est définitive.
+3. **Le bruit est l'ennemi.** Un coup de feu sauve une vie et attire la moitié du quartier.
+4. **Rentrer, c'est gagner.** Le butin ne vaut rien tant qu'il n'est pas extrait.
+5. **Le monde se souvient.** Maisons fouillées, murs abattus, cadavres, bâtiments effondrés : tout reste en place d'une expédition à l'autre.
 
 ## Boucle de jeu
 
@@ -27,81 +28,212 @@ Planque ──► Préparer l'escouade ──► Expédition ──► Extractio
    └──────────── Nuit de horde : défendre la planque ◄───────────────────────┘
 ```
 
-### À la planque, entre deux expéditions
+Le temps avance : chaque expédition, chaque nuit de repos et chaque soin consomme des heures de jeu. Le groupe mange, boit, guérit ou s'aggrave.
 
-- **Stock** en grille : chaque objet a une taille et un poids.
-- **Survivants** : soigner, nourrir, équiper, recruter. Les blessures guérissent avec le temps et les soins.
-- **Modules** à construire et améliorer : générateur, établi, infirmerie, récupérateur d'eau, cuisine, murs et tours.
-- **Échanges** avec d'autres groupes de survivants : revendre le butin de valeur, acheter munitions et soins, missions avec réputation.
-- **Besoins du groupe** : nourriture et eau consommées chaque jour. Il faut donc sortir.
+## 1. Vision et brouillard (comme Project Zomboid)
 
-### En expédition
+Le joueur ne voit que ce que voit au moins un survivant. Aucune information gratuite.
 
-- On choisit un quartier, de 1 à 5 survivants et leur équipement. Tout ce qui part peut être perdu.
-- **Durée limitée** : la pression monte avec le temps, avec des hordes de plus en plus grosses et la nuit qui tombe.
-- **Plusieurs sorties**, certaines conditionnelles :
-  - toujours ouverte mais loin ;
-  - à payer ;
-  - sans sac à dos (passage étroit, égouts) ;
-  - à déclencher au prix de beaucoup de bruit (fusée pour un hélicoptère, générateur à relancer).
-- **Fouille** : chaque conteneur prend du temps à fouiller. Le butin varie selon le lieu : pharmacie, armurerie, supermarché, commissariat.
-- **Poche sécurisée** : quelques cases que l'on garde même en cas de mort.
+- **Cône de vision** par survivant : environ 150° devant lui. Hors du cône, il ne perçoit que les deux ou trois mètres autour de lui.
+- **Portée variable** :
+  - lumière : plein jour, crépuscule, nuit, lampe torche ;
+  - météo : pluie, brouillard réel ;
+  - traits : myope, œil de lynx ;
+  - état : la panique rétrécit le cône, une blessure à la tête trouble la vue ;
+  - hauteur : depuis un toit ou un étage, on voit plus loin.
+- **Ce qui bloque la vue** : murs, portes fermées, rideaux, véhicules. Haies et hautes herbes la bloquent en partie. Les fenêtres laissent voir.
+- **Trois états du brouillard** :
+  - inconnu : noir ;
+  - mémorisé : désaturé et sombre, avec les bâtiments tels qu'ils étaient au dernier regard, sans les zombies ;
+  - visible : en couleur, avec tout ce qui bouge.
+- **Dernières positions connues** : un zombie qui sort du champ de vision laisse un marqueur fantôme qui s'estompe avec le temps.
+- **Intérieurs cachés** : le toit d'un bâtiment masque l'intérieur jusqu'à ce qu'un survivant y entre ou regarde par une porte ou une fenêtre. Les murs entre la caméra et les survivants s'abaissent pour qu'on les voie.
+- **Vision partagée, mais physique** : un survivant dans une maison ne voit pas la rue. L'escouade doit se placer pour voir.
 
-### Nuits de horde
+## 2. Ouïe et bruit
 
-Régulièrement, une horde attaque la planque. Les murs perdent leurs PV, les zombies cherchent le point faible, puis il faut réparer. Cette partie reprend la défense de They Are Billions et d'Ebbtide.
+Chaque action produit un bruit, avec un rayon et une intensité.
 
-## Survivants
+| Source | Rayon indicatif |
+| --- | --- |
+| Accroupi | quasi nul |
+| Marche | 2 m |
+| Course | 6 m |
+| Ouvrir une porte | 4 m |
+| Briser une vitre | 15 m |
+| Porte enfoncée | 12 m |
+| Coup de feu, pistolet | 40 m |
+| Coup de feu, fusil | 60 m et plus |
+| Alarme de maison ou de voiture | 80 m, dure longtemps |
+| Mur qui s'effondre | 20 m |
+| Générateur, moteur | 30 m, continu |
 
-- **Santé par zone** : tête, torse, ventre, bras et jambes. Saignements, fractures et douleur. Une jambe cassée ralentit, un bras touché fait moins bien viser.
-- **Infection** : une morsure est mortelle à terme ; une griffure ou une lacération ne l'est que parfois. Le survivant infecté finit par mourir puis se relève.
-- **Fatigue et panique** : la panique dégrade la précision, la fatigue la vitesse.
-- **Compétences** qui progressent à l'usage : armes, discrétion, médecine, construction, fouille.
-- **Traits** de départ, comme ancien soldat, infirmier, maladroit ou insomniaque.
-- **Poids porté** : surchargé, on va moins vite et on fait plus de bruit.
+- Les murs étouffent le son. Un silencieux le réduit, un boitement l'augmente.
+- Les zombies vont vers la source, avec une imprécision qui dépend de la distance. Leurs grognements en attirent d'autres : une horde peut faire boule de neige.
+- **Ce que voit le joueur** : son propre bruit s'affiche en cercles. Ce que ses survivants entendent hors de leur vue apparaît comme un « ? » dans le brouillard.
+- **Le bruit comme outil** : réveils, pétards ou alarme déclenchée exprès servent à attirer une horde ailleurs.
 
-## Zombies
+## 3. Blessures et santé
 
-- **Sens** : ils réagissent au bruit (pas, tirs, vitres brisées, moteurs) et à la vue (ligne de vue bloquée par les murs).
-- **États** : errance, recherche de l'origine d'un bruit, poursuite, attaque.
-- **Types** : marcheur lent, coureur, lourd (qu'un blindé ne peut pas écraser), grimpeur, et hordes migrantes qui traversent les quartiers.
-- **Murs** : ils frappent les obstacles et s'empilent contre les murs hauts. Ils visent le point le plus faible, pas le plus proche.
+### Le corps
 
-## Contrôles RTS
+Dix-sept zones, comme dans Project Zomboid : tête, cou, torse, abdomen, aine, haut des bras, avant-bras, mains, cuisses, tibias et pieds, à gauche et à droite. L'interface les affiche sur une silhouette.
 
-- Sélection au clic ou par rectangle, groupes de contrôle, déplacement, attaque, attaque en avançant.
-- **Allures** : accroupi (silencieux, lent), marche, course (rapide, bruyante).
-- **Ordres** : fouiller, ouvrir, barricader une porte ou une fenêtre, soigner un équipier, tenir la position, tirer à vue ou seulement en riposte.
-- **Pause active** pour donner des ordres à tout moment.
-- **Brouillard de guerre** et vision réelle : on ne voit que ce que l'escouade voit.
+### Types de blessures
+
+| Blessure | Effet principal | Soin |
+| --- | --- | --- |
+| Égratignure | Saignement léger | Pansement, désinfection |
+| Lacération | Saignement moyen | Pansement, éventuellement suture |
+| Plaie profonde, éclat de verre | Saignement fort, éclat logé | Pince, suture, pansement |
+| Morsure | Saignement, infection zombie certaine | Aucun remède |
+| Blessure par balle | Saignement fort, balle logée | Extraction, suture |
+| Fracture | Lenteur (jambe), mauvaise visée (bras) | Attelle, des semaines de guérison |
+| Entorse, luxation | Douleur, lenteur | Repos, bandage |
+| Brûlure | Douleur, risque d'infection | Pansement propre |
+| Commotion | Vue trouble, vertiges | Repos |
+
+### Mécanismes
+
+- **Volume sanguin** : environ 5 litres. Les saignements le vident. En dessous de certains seuils : vertiges, lenteur, perte de connaissance, puis mort.
+- **Pansements** : ils se salissent et s'imbibent, il faut les changer. Un pansement sale provoque une infection bactérienne, avec de la fièvre, qui se soigne aux antibiotiques.
+- **Douleur** : elle dégrade la visée et augmente la panique. Les antidouleurs ont des effets secondaires, comme la somnolence avec la morphine.
+- **Conséquences tactiques** :
+  - jambe touchée : lent, bruyant, incapable d'escalader une fenêtre ;
+  - bras touché : arme à deux mains difficile à tenir, rechargement lent ;
+  - grosse perte de sang : tout est plus lent.
+- **Soigner prend du temps**, peut être interrompu et dépend de la compétence de premiers secours et du matériel disponible. Un survivant peut en porter un autre blessé, en se déplaçant lentement.
+
+### Infection zombie
+
+- Probabilité d'être infecté : morsure 100 %, lacération 25 %, égratignure 7 %. Ce sont les valeurs par défaut de Project Zomboid.
+- **Le joueur ne sait pas tout de suite** si une égratignure est infectée. Les symptômes arrivent par étapes : nausée, fièvre, faiblesse, mort, puis réveil en zombie.
+- **Choix extrême** : amputer un membre mordu dans les minutes qui suivent. C'est un choix risqué, qui laisse un handicap à vie.
+- Un survivant infecté peut faire une dernière expédition avant de mourir.
+
+### Protection
+
+Les vêtements et protections couvrent des zones précises : blouson de moto, gants, casque, gilet de police, jambières. Ils réduisent le risque de morsure ou d'égratignure, se trouent et s'usent. Des vêtements sales ou ensanglantés augmentent le risque d'infection des plaies.
+
+## 4. État des survivants
+
+- **Besoins** : faim, soif, fatigue (sommeil), endurance (effort immédiat), température (froid, chaleur, vêtements mouillés), maladie.
+- **Mental** : panique (au combat, devant des cadavres, à la mort d'un équipier), stress, moral.
+- **Panique et obéissance** : un survivant terrorisé peut hésiter ou refuser un ordre suicidaire.
+- **Traits** de départ, positifs et négatifs : ancien militaire, infirmier, athlète, courageux, lâche, myope, malentendant, ouïe fine, fumeur, insomniaque, maladroit.
+- **Compétences** qui progressent à l'usage : visée, rechargement, armes blanches courtes et longues, armes contondantes, discrétion, pas légers, agilité, premiers secours, menuiserie, mécanique, électricité, cuisine.
+- **Encombrement** : au-delà de la charge supportable, on est plus lent, plus bruyant et on s'épuise.
+
+## 5. Combat réaliste
+
+- **Armes à feu** :
+  - calibres et chargeurs à remplir balle par balle, balle chambrée ;
+  - enrayements selon l'état de l'arme, recul, usure ;
+  - bruit propre à chaque arme, flamme visible la nuit.
+- **Contre les zombies** : un tir à la tête tue, un tir au corps fait seulement chanceler. La précision dépend de :
+  - la distance, la compétence et la panique ;
+  - la douleur et l'état des bras ;
+  - le mouvement : tirer en marchant ou à l'arrêt.
+- **Contre les humains** : classes d'armure, pénétration des munitions, balles qui traversent le bois mais pas le béton.
+- **Corps à corps** : il coûte beaucoup d'endurance et use les armes. On peut repousser ou faire tomber un zombie, puis l'achever au sol.
+- **Être encerclé** : à trois zombies au contact, le survivant risque d'être agrippé, mis à terre et mordu. Être encerclé est presque toujours mortel.
+- **Tir ami** possible : il faut gérer les lignes de tir.
+
+## 6. Zombies
+
+- **Types** :
+  - marcheur (le plus courant) et coureur (rare) ;
+  - rampant, aux jambes brisées, caché sous les voitures ;
+  - faux mort, allongé parmi les cadavres ;
+  - cogneur, qui défonce les portes ;
+  - lourd, qu'un véhicule ne peut pas écraser ;
+  - grimpeur, qui s'empile contre les murs, comme dans Ebbtide.
+- **Sens** : ouïe forte, vue courte, odorat. Un survivant qui saigne laisse une trace que les zombies suivent.
+- **Mémoire** : ils fouillent le dernier endroit où ils ont vu ou entendu une proie.
+- **Obstacles** : ils ne savent pas ouvrir une porte mais peuvent la défoncer. Ils passent par les fenêtres brisées et franchissent les clôtures basses. Ils s'empilent contre les murs hauts ; les tirs font tomber la pile.
+- **Point faible** : une horde vise la partie la plus fragile d'une défense, pas la plus proche.
+- **Hordes migrantes** qui traversent les quartiers, attirées par les grands bruits (hélicoptère, explosion).
+- **Population persistante** par quartier : les zombies tués restent morts. Leurs cadavres pourrissent et rendent malade s'ils restent près de la planque.
+
+## 7. Monde
+
+- **Ville fictive** découpée en quartiers de difficulté croissante :
+  - résidentiel ;
+  - centre-ville ;
+  - zone commerciale ;
+  - hôpital ;
+  - commissariat ;
+  - base militaire abandonnée, très dangereuse et très riche, l'équivalent du Labs de Tarkov.
+- **Jour et nuit, météo, saisons** : la nuit cache, mais aveugle aussi. La pluie couvre les bruits et mouille. Le brouillard réel réduit la vue.
+- **Effondrement de la ville** : l'eau puis l'électricité sont coupées après quelques jours. Il faut alors des générateurs, bruyants et gourmands en carburant.
+- **Persistance** : le butin est limité et ne réapparaît pas. Les destructions restent, les cadavres aussi.
+- **Bâtiments destructibles** : murs en segments d'un mètre, avec PV et matériau (bois, plâtre, brique, béton, tôle). Un segment détruit laisse des gravats. Ce qui n'est plus soutenu s'effondre.
+
+## 8. Expéditions (comme Escape from Tarkov)
+
+- **Préparation** : choisir le quartier, l'heure (la nuit est plus discrète mais plus dangereuse), l'escouade (1 à 5 survivants) et son équipement. Tout ce qui part peut être perdu.
+- **Arrivée** : à un point d'entrée tiré au hasard parmi plusieurs.
+- **Sorties** :
+  - permanentes ;
+  - ouvertes seulement certaines expéditions ;
+  - conditionnelles : payer un passeur, passer sans sac à dos par les égouts, relancer un générateur (bruyant), tirer une fusée pour un hélicoptère (très bruyant), repartir en véhicule s'il a du carburant.
+- **Durée limitée** : à la fin, les survivants restés sur place sont portés disparus.
+- **Fouille** : chaque conteneur prend du temps à fouiller et les objets apparaissent un par un. Le butin dépend du lieu.
+- **Poche sécurisée** : quelques cases qui restent même en cas de mort.
+- **Après une mort** :
+  - le corps reste sur la carte : une expédition suivante peut aller récupérer son équipement ;
+  - un survivant mort de l'infection se relève en zombie, avec son équipement sur le dos.
+- **Pillards humains** contrôlés par l'IA, qui fouillent, tirent et font du bruit.
+
+## 9. La planque
+
+Un vrai lieu de la ville, à fortifier, et non un simple menu.
+
+- **Stock** en grille, où chaque objet a une taille et un poids.
+- **Modules** à construire et améliorer :
+  - murs (planches, tôle, sacs de sable, béton), portes, tours de guet ;
+  - générateur, récupérateur d'eau, potager, cuisine ;
+  - établi, infirmerie (chirurgie, amputation), dortoir ;
+  - radio, qui débloque les contacts avec d'autres groupes.
+- **Commerce et missions** : d'autres groupes de survivants achètent, vendent et donnent des missions, avec un système de réputation.
+- **Nuits de horde** : la planque attire les zombies par le bruit et la lumière. Les murs perdent leurs PV, puis on répare.
+
+## 10. Contrôles RTS
+
+- Sélection au clic ou par rectangle, groupes de contrôle, ordres en file d'attente avec Maj.
+- **Allures** : accroupi, marche, course.
+- **Règles d'engagement** : ne pas tirer, riposter seulement, tirer à volonté, corps à corps seulement.
+- **Ordres contextuels** :
+  - fouiller ;
+  - ouvrir, fermer, verrouiller ou barricader une porte ;
+  - briser une vitre, escalader ;
+  - soigner, porter un blessé ;
+  - poser un piège ou un appât sonore ;
+  - entrer dans une pièce en se plaçant de part et d'autre de la porte.
+- **Pause active** et ralenti pour donner des ordres à tout moment.
+- **Contrôle direct** optionnel d'un survivant, comme dans Ebbtide.
+- **Interface** :
+  - portraits de l'escouade, silhouette des blessures, indicateurs d'état (faim, panique, douleur) ;
+  - inventaire en grille avec glisser-déposer et rotation ;
+  - cercles de bruit, marqueurs fantômes.
+
+## 11. Rendu 3D pixelisé
+
+- Scène 3D rendue en basse résolution puis agrandie sans lissage. La caméra se cale sur la grille de pixels pour éviter le scintillement.
+- Contours, éclairage en paliers et palette limitée pour l'aspect pixel art.
+- Brouillard rendu dans les shaders, à partir d'une texture de visibilité :
+  - visible : en couleur ;
+  - mémorisé : désaturé et sombre ;
+  - inconnu : noir ;
+  - transitions en tramage.
+- Toits et murs qui s'effacent pour montrer les intérieurs.
+- Destruction : segment remplacé par sa version cassée, gravats, débris et poussière.
 
 ## Ce qui viendra plus tard
 
-- Véhicules, avec carburant et bruit.
-- Pillards humains contrôlés par l'IA, et armure contre pénétration des munitions.
-- Coupure de l'eau et de l'électricité après quelques jours.
+- Véhicules complets : carburant, pannes, bruit.
+- Étages multiples.
 - Agriculture et artisanat avancé.
 - Multijoueur coopératif, voire compétitif comme Tarkov.
 
-## Premier prototype jouable
-
-Une seule expédition complète, de la planque à la planque.
-
-| Inclus | Pas encore |
-| --- | --- |
-| Un quartier de quelques pâtés de maisons | Plusieurs quartiers |
-| Escouade de 3 survivants, contrôles RTS, pause | Contrôle direct d'un survivant |
-| Marcheurs et coureurs, bruit et vue | Grimpeurs, lourds, hordes migrantes |
-| Murs et portes destructibles, barricades | Effondrement de bâtiments |
-| 10 à 15 conteneurs, inventaire en grille | Échanges, missions |
-| 2 sorties, dont une conditionnelle, durée limitée | Nuit de horde sur la planque |
-| Morsure, saignement, soins | Santé complète par zone |
-| Planque minimale : stock, soins, recrutement, sauvegarde | Modules de planque |
-
-## Décisions à prendre avant de coder
-
-1. **Moteur** : Unity (comme Ebbtide), Godot (comme Withstand The Horde) ou navigateur web.
-2. **Rendu** : scène 3D rendue en pixels, comme Ebbtide, ou sprites 2D dessinés. La 3D simplifie les destructions.
-3. **Vue** : de dessus, comme le post de mantakustudio, ou isométrique.
-
-Les jeux de référence sont détaillés dans [ANALYSE-REFERENCES.md](ANALYSE-REFERENCES.md).
+Les jeux de référence sont détaillés dans [ANALYSE-REFERENCES.md](ANALYSE-REFERENCES.md). Les étapes de développement sont dans [FEUILLE-DE-ROUTE.md](FEUILLE-DE-ROUTE.md).
